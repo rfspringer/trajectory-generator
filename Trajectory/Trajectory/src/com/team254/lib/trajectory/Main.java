@@ -13,6 +13,7 @@ import java.io.IOException;
  * @author Rachel
  */
 public class Main {
+  //this is a test comment for example-1
 
 	//TOP OF CODE SHOULD BE MOVED TO SOMEWHERE ELSE
   public static String joinPath(String path1, String path2)
@@ -568,3 +569,4 @@ public class Main {
    
   }
 }
+// wow a test comment from example-2
