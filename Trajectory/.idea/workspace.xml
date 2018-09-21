@@ -1,49 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="168a69b5-b7f5-4810-b6fd-34a93fd1fe29" name="Default Changelist" comment="test commit">
-      <change afterPath="$PROJECT_DIR$/.idea/Trajectory.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="168a69b5-b7f5-4810-b6fd-34a93fd1fe29" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/AngledToCryptobox.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BackUp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueFarCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueFarClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueFarFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueOffPlatformCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueOffPlatformClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/BlueOffPlatformFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/CenterLanePathFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/CloseGlyphColumnCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/CloseGlyphColumnLeft.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/CloseGlyphColumnRight.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/GlyphPickUp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/InsideLanePathClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/InsideLanePathFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/JewelBack.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/JewelFront.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformBack.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformCenterBlue.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformCenterRed.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformCloseBlue.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformCloseRed.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformFarBlue.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformFarRed.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformFront.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformLeft.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/OffPlatformRight.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedFarCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedFarClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedFarFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedOffPlatformCenter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedOffPlatformClose.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/RedOffPlatformFar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/StraightAheadPath.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/ToCryptobox.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trajectory/WallLanePath.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Trajectory/src/com/team254/lib/trajectory/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trajectory/src/com/team254/lib/trajectory/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,12 +31,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="java" value="32" />
           <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="JAVA" value="32" />
           <entry key="PLAIN_TEXT" value="11" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.create.new" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -87,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Trajectory/src/com/team254/lib/trajectory/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="43" column="2" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
+            <state relative-caret-position="153">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -97,10 +63,21 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Trajectory/src/com/team254/lib/trajectory/Main.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
   </component>
@@ -131,7 +108,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537496634957" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537496986821" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -176,10 +153,19 @@
       <option name="presentableId" value="Default" />
       <updated>1537494958946</updated>
     </task>
+    <task id="LOCAL-00001" summary="test commit">
+      <created>1537496645745</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1537496645745</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -219,8 +205,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Trajectory/src/com/team254/lib/trajectory/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="43" column="2" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
+        <state relative-caret-position="153">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
         </state>
       </provider>
     </entry>
