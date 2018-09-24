@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Rachel
  */
 public class Main {
-//tested change
+
 	//TOP OF CODE SHOULD BE MOVED TO SOMEWHERE ELSE
   public static String joinPath(String path1, String path2)
   {
