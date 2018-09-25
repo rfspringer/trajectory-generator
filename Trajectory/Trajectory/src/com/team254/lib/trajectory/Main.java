@@ -21,6 +21,7 @@ public class Main {
     if (args.length >= 1) {
       directory = args[0];		//If the user passes a directory, use that instead
     }
+    trajectoryWriter.setDirectory(directory);
     
 	//create config objects of for robot constraints
     // Edit to avoid public objects, pass constraints instead and use getters and setters
@@ -58,9 +59,8 @@ public class Main {
       // Outputs to the directory supplied as the first argument.
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
-      //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+
+      trajectoryWriter.writeFile(path_name, serialized);
 
     }
     
@@ -87,8 +87,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -115,8 +114,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     {
@@ -142,8 +140,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     {
@@ -169,8 +166,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
 
     {
@@ -196,8 +192,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     {
@@ -223,8 +218,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     {
@@ -247,8 +241,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -272,8 +265,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -298,8 +290,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -324,8 +315,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -350,8 +340,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -376,8 +365,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -403,8 +391,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -428,8 +415,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
     
     
@@ -455,8 +441,7 @@ public class Main {
       TextFileSerializer js = new TextFileSerializer();
       String serialized = js.serialize(path);
       //System.out.print(serialized);
-      String fullpath = trajectoryWriter.joinPath(directory, path_name + ".txt");
-      trajectoryWriter.writeFile(fullpath, serialized);
+        trajectoryWriter.writeFile(path_name, serialized);
     }
    
   }
