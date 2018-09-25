@@ -53,15 +53,9 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.675, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
+      Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
 
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-
-      trajectoryWriter.writeFile(path_name, serialized);
-
+      trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     {
@@ -80,14 +74,9 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.5, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
 
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -110,11 +99,9 @@ public class Main {
       Path path = PathGenerator.makePath(p, config,
           kWheelbaseWidth, path_name);
 
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     {
@@ -136,11 +123,9 @@ public class Main {
       Path path = PathGenerator.makePath(p, config,
           kWheelbaseWidth, path_name);
 
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     {
@@ -159,14 +144,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(3.765, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+      Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+      trajectoryWriter.writeFile(path_name, currentPath);
     }
 
     {
@@ -185,14 +164,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(3.635, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-              kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     {
@@ -211,14 +184,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(1.15, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     {
@@ -234,14 +201,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(0.8, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -258,14 +219,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(3.3, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -283,14 +238,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.088, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -307,15 +256,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.088, 0, 0));
 
-
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -333,14 +275,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.236, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -356,16 +292,10 @@ public class Main {
       WaypointSequence p = new WaypointSequence(10);
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.4, 0, 0));
-      
-      
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
 
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -384,14 +314,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.6, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -408,14 +332,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(2.6, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
     
     
@@ -434,14 +352,8 @@ public class Main {
       p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
       p.addWaypoint(new WaypointSequence.Waypoint(0.16, 0, 0));
 
-      Path path = PathGenerator.makePath(p, config,
-          kWheelbaseWidth, path_name);
-
-      // Outputs to the directory supplied as the first argument.
-      TextFileSerializer js = new TextFileSerializer();
-      String serialized = js.serialize(path);
-      //System.out.print(serialized);
-        trajectoryWriter.writeFile(path_name, serialized);
+        Path currentPath = PathGenerator.makePath(p, config, kWheelbaseWidth, path_name);
+        trajectoryWriter.writeFile(path_name, currentPath);
     }
    
   }

@@ -1,5 +1,7 @@
 package com.team254.lib.trajectory;
 
+import com.team254.lib.trajectory.io.TextFileSerializer;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -56,7 +58,13 @@ public class TrajectoryWriter {
         }
     }
 
-    public void writeFile(String fileName, String data) {
+    private String serializeData(Path path) {
+        TextFileSerializer js = new TextFileSerializer();
+        return js.serialize(path);
+    }
+
+    public void writeFile(String fileName, Path path) {
+        String data = serializeData(path);
         String fullPath = getPath(fileName);
         File file = createFile(fullPath);
         boolean fileHasData = populateFile(file, data);
