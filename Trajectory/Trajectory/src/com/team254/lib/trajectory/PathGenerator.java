@@ -13,26 +13,25 @@ public class PathGenerator {
    * 
    * @param waypoints The waypoints to drive to (FOR THE "GO LEFT" CASE!!!!)
    * @param config Trajectory config.
-   * @param wheelbase_width Wheelbase separation; units must be consistent with
    * config and waypoints.
    * @param name The name of the new path.  THIS MUST BE A VALID JAVA CLASS NAME
    * @return The path.
    */
   public static Path makePath(WaypointSequence waypoints, 
-          TrajectoryGenerator.Config config, double wheelbase_width, 
+          Config config,
           String name) {
     return new Path(name, 
-            generateLeftAndRightFromSeq(waypoints, config, wheelbase_width));
+            generateLeftAndRightFromSeq(waypoints, config, config.getWheelbaseWidth()));
   }
 
   static Trajectory.Pair generateLeftAndRightFromSeq(WaypointSequence path,
-          TrajectoryGenerator.Config config, double wheelbase_width) {
+          Config config, double wheelbaseWidth) {
     return makeLeftAndRightTrajectories(generateFromPath(path, config),
-            wheelbase_width);
+            config.getWheelbaseWidth());
   }
 
   static Trajectory generateFromPath(WaypointSequence path,
-          TrajectoryGenerator.Config config) {
+          Config config) {
     if (path.getNumWaypoints() < 2) {
       return null;
     }

@@ -7,15 +7,16 @@ package com.team254.lib.trajectory;
  */
 public class TrajectoryGenerator {
 
-  ///// INNER CLASSES /////
-  public static class Config {
+//  ///// INNER CLASSES /////
+//  public static class Config {
+//
+//    public double timeInterval;
+//    public double max_vel;
+//    public double max_acc;
+//    public double max_jerk;
+//
+//  }
 
-    public double timeInterval;
-    public double max_vel;
-    public double max_acc;
-    public double max_jerk;
-    
-  }
 
   public static class Strategy {
 
@@ -100,65 +101,65 @@ public class TrajectoryGenerator {
           double goal_heading) {
     // Choose an automatic strategy.
     if (strategy == AutomaticStrategy) {
-      strategy = chooseStrategy(start_vel, goal_vel, config.max_vel);
+      strategy = chooseStrategy(start_vel, goal_vel, config.getMaxVelocity());
     }
 
     Trajectory traj;
     if (strategy == StepStrategy) {
-      double impulse = (goal_pos / config.max_vel) / config.timeInterval;
+      double impulse = (goal_pos / config.getMaxVelocity()) / config.getTimeInterval();
 
       // Round down, meaning we may undershoot by less than max_vel*dt.
       // This is due to discretization and avoids a strange final
       // velocity.
       int time = (int) (Math.floor(impulse));
-      traj = secondOrderFilter(1, 1, config.timeInterval, config.max_vel,
-              config.max_vel, impulse, time, TrapezoidalIntegration);
+      traj = secondOrderFilter(1, 1, config.getTimeInterval(), config.getMaxVelocity(),
+              config.getMaxVelocity(), impulse, time, TrapezoidalIntegration);
 
     } else if (strategy == TrapezoidalStrategy) {
       // How fast can we go given maximum acceleration and deceleration?
-      double start_discount = .5 * start_vel * start_vel / config.max_acc;
-      double end_discount = .5 * goal_vel * goal_vel / config.max_acc;
+      double start_discount = .5 * start_vel * start_vel / config.getMaxAcceleration();
+      double end_discount = .5 * goal_vel * goal_vel / config.getMaxAcceleration();
 
-      double adjusted_max_vel = Math.min(config.max_vel,
-              Math.sqrt(config.max_acc * goal_pos - start_discount
+      double adjusted_max_vel = Math.min(config.getMaxVelocity(),
+              Math.sqrt(config.getMaxAcceleration() * goal_pos - start_discount
                       - end_discount));
-      double t_rampup = (adjusted_max_vel - start_vel) / config.max_acc;
-      double x_rampup = start_vel * t_rampup + .5 * config.max_acc
+      double t_rampup = (adjusted_max_vel - start_vel) / config.getMaxAcceleration();
+      double x_rampup = start_vel * t_rampup + .5 * config.getMaxAcceleration()
               * t_rampup * t_rampup;
-      double t_rampdown = (adjusted_max_vel - goal_vel) / config.max_acc;
+      double t_rampdown = (adjusted_max_vel - goal_vel) / config.getMaxAcceleration();
       double x_rampdown = adjusted_max_vel * t_rampdown - .5
-              * config.max_acc * t_rampdown * t_rampdown;
+              * config.getMaxAcceleration() * t_rampdown * t_rampdown;
       double x_cruise = goal_pos - x_rampdown - x_rampup;
 
       // The +.5 is to round to nearest
       int time = (int) ((t_rampup + t_rampdown + x_cruise
-              / adjusted_max_vel) / config.timeInterval + .5);
+              / adjusted_max_vel) / config.getTimeInterval() + .5);
 
       // Compute the length of the linear filters and impulse.
       int f1_length = (int) Math.ceil((adjusted_max_vel
-              / config.max_acc) / config.timeInterval);
-      double impulse = (goal_pos / adjusted_max_vel) / config.timeInterval
-              - start_vel / config.max_acc / config.timeInterval
+              / config.getMaxAcceleration()) / config.getTimeInterval());
+      double impulse = (goal_pos / adjusted_max_vel) / config.getTimeInterval()
+              - start_vel / config.getMaxAcceleration() / config.getTimeInterval()
               + start_discount + end_discount;
-      traj = secondOrderFilter(f1_length, 1, config.timeInterval, start_vel,
+      traj = secondOrderFilter(f1_length, 1, config.getTimeInterval(), start_vel,
               adjusted_max_vel, impulse, time, TrapezoidalIntegration);
 
     } else if (strategy == SCurvesStrategy) {
       // How fast can we go given maximum acceleration and deceleration?
-    	double theoretical_max = (-config.max_acc * config.max_acc + Math.sqrt(config.max_acc
-                * config.max_acc * config.max_acc * config.max_acc
-                + 4 * config.max_jerk * config.max_jerk * config.max_acc
-                * goal_pos)) / (2 * config.max_jerk);
-      double adjusted_max_vel = Math.min(config.max_vel, theoretical_max);
+    	double theoretical_max = (-config.getMaxAcceleration() * config.getMaxAcceleration() + Math.sqrt(config.getMaxAcceleration()
+                * config.getMaxAcceleration() * config.getMaxAcceleration() * config.getMaxAcceleration()
+                + 4 * config.getMaxJerk() * config.getMaxJerk() * config.getMaxAcceleration()
+                * goal_pos)) / (2 * config.getMaxJerk());
+      double adjusted_max_vel = Math.min(config.getMaxVelocity(), theoretical_max);
 
       // Compute the length of the linear filters and impulse.
       int f1_length = (int) Math.ceil((adjusted_max_vel
-              / config.max_acc) / config.timeInterval);
-      int f2_length = (int) Math.ceil((config.max_acc
-              / config.max_jerk) / config.timeInterval);
-      double impulse = (goal_pos / adjusted_max_vel) / config.timeInterval;
+              / config.getMaxAcceleration()) / config.getTimeInterval());
+      int f2_length = (int) Math.ceil((config.getMaxAcceleration()
+              / config.getMaxJerk()) / config.getTimeInterval());
+      double impulse = (goal_pos / adjusted_max_vel) / config.getTimeInterval();
       int time = (int) (Math.ceil(f1_length + f2_length + impulse));
-      traj = secondOrderFilter(f1_length, f2_length, config.timeInterval, 0,
+      traj = secondOrderFilter(f1_length, f2_length, config.getTimeInterval(), 0,
               adjusted_max_vel, impulse, time, TrapezoidalIntegration);
 
     } else {

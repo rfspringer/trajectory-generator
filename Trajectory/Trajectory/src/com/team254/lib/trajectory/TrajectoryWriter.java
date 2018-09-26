@@ -10,10 +10,6 @@ import java.io.IOException;
 public class TrajectoryWriter {
     private String directory;
 
-    public void setDirectory(String directoryPath) {
-        directory = directoryPath;
-    }
-
     private String getPath(String trajectory) {
         File directory = new File(this.directory);
         String fullTrajectoryPath = trajectory + ".txt";
@@ -53,7 +49,7 @@ public class TrajectoryWriter {
         if (fileWasWritten) {
             System.out.println("Wrote " + path);
         } else {
-            System.err.println("File" + path + "could not be written!!!!");
+            System.err.println("File" + path + "could not be written!!!");
             System.exit(1);
         }
     }
@@ -72,4 +68,7 @@ public class TrajectoryWriter {
         writeTelemetry(fileWasWritten, fullPath);
     }
 
+    public void setDirectory(String directoryPath) {
+        directory = directoryPath;
+    }
 }
