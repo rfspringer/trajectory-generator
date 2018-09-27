@@ -68,7 +68,13 @@ public class TrajectoryWriter {
         writeTelemetry(fileWasWritten, fullPath);
     }
 
-    public void setDirectory(String directoryPath) {
+    public void setDirectory(String[] args) {
+        String directoryPath;
+        if (args.length >= 1) {
+            directoryPath = args[0];
+        } else {
+            directoryPath = ".";
+        }
         directory = directoryPath;
     }
 }

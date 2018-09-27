@@ -16,16 +16,10 @@ public class Main {
   
   public static void main(String[] args) {
     TrajectoryWriter trajectoryWriter = new TrajectoryWriter();
-	  
-    String directory = ".";		//Set default directory to store files
-    if (args.length >= 1) {
-      directory = args[0];		//If the user passes a directory, use that instead
-    }
-    trajectoryWriter.setDirectory(directory);
-    
-	//create config objects of for robot constraints
-    // Edit to avoid public objects, pass constraints instead and use getters and setters
+    trajectoryWriter.setDirectory(args);
+
     Config defaultConfig = new Config(0.01, 4.0, 3.25, 30.0, 1.0);
+
     
     {
     	// Edits only written for this one
@@ -35,16 +29,15 @@ public class Main {
     	// Edit the braces out because they =are pointless
 
       // Path name must be a valid Java class name.
-      final String path_name = "RedOffPlatformClose";
+      final String path_name = "TestPath";
       
       // Description of this auto mode path.
-      // Remember that this is for the GO LEFT CASE!
-      WaypointSequence p = new WaypointSequence(10);	//Create WaypointSequence to hold up to 10 waypoints
+      WaypointSequence waypointSequence = new WaypointSequence(10);	//Create WaypointSequence to hold up to 10 waypoints
       //Create Waypoint sequences, add these waypoints to the waypoint sequences 3 times
-      p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-      p.addWaypoint(new WaypointSequence.Waypoint(2.675, 0, 0));
+      waypointSequence.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
+      waypointSequence.addWaypoint(new WaypointSequence.Waypoint(2.675, 0, 0));
 
-      Path currentPath = PathGenerator.makePath(p, defaultConfig, path_name);
+      Path currentPath = PathGenerator.makePath(waypointSequence, defaultConfig, path_name);
 
       trajectoryWriter.writeFile(path_name, currentPath);
     }

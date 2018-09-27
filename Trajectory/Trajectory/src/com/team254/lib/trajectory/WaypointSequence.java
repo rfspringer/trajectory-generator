@@ -12,6 +12,9 @@ import com.team254.lib.util.ChezyMath;
 public class WaypointSequence {
 
   public static class Waypoint {
+    public double x;
+    public double y;
+    public double theta;
 
     public Waypoint(double x, double y, double theta) {
       this.x = x;
@@ -24,10 +27,6 @@ public class WaypointSequence {
       this.y = tocopy.y;
       this.theta = tocopy.theta;
     }
-
-    public double x;
-    public double y;
-    public double theta;
   }
 
   Waypoint[] waypoints_;

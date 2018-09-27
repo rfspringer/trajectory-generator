@@ -21,11 +21,11 @@ public class PathGenerator {
           Config config,
           String name) {
     return new Path(name, 
-            generateLeftAndRightFromSeq(waypoints, config, config.getWheelbaseWidth()));
+            generateLeftAndRightFromSeq(waypoints, config));
   }
 
   static Trajectory.Pair generateLeftAndRightFromSeq(WaypointSequence path,
-          Config config, double wheelbaseWidth) {
+          Config config) {
     return makeLeftAndRightTrajectories(generateFromPath(path, config),
             config.getWheelbaseWidth());
   }
