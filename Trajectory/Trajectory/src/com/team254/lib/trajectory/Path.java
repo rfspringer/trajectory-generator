@@ -1,19 +1,17 @@
 package com.team254.lib.trajectory;
 
-import com.team254.lib.trajectory.Trajectory.Segment;
-
 /**
  * Base class for an autonomous path.
  * 
  * @author Jared341
  */
 public class Path {
-  protected Trajectory.Pair go_left_pair_;
-  protected String name_;
-  protected boolean go_left_;
+  private Trajectory.Pair go_left_pair_;
+  private String pathName;
+  private boolean go_left_;
   
   public Path(String name, Trajectory.Pair go_left_pair) {
-    name_ = name;
+    pathName = name;
     go_left_pair_ = go_left_pair;
     go_left_ = true;
   }
@@ -22,7 +20,7 @@ public class Path {
     
   }
   
-  public String getName() { return name_; }
+  public String getName() { return pathName; }
   
   public void goLeft() { 
     go_left_ = true; 

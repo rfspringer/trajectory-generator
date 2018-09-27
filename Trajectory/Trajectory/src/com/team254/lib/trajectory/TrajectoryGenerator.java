@@ -170,9 +170,9 @@ public class TrajectoryGenerator {
     // Don't do any wrapping because we don't know units.
     double total_heading_change = goal_heading - start_heading;
     for (int i = 0; i < traj.getNumSegments(); ++i) {
-      traj.segments_[i].heading = start_heading + total_heading_change
-              * (traj.segments_[i].pos)
-              / traj.segments_[traj.getNumSegments() - 1].pos;
+      traj.segments[i].heading = start_heading + total_heading_change
+              * (traj.segments[i].pos)
+              / traj.segments[traj.getNumSegments() - 1].pos;
     }
 
     return traj;
@@ -237,24 +237,24 @@ public class TrajectoryGenerator {
       f2 = f2 / f1_length;
 
       // Velocity is the normalized sum of f2 * the max velocity
-      traj.segments_[i].vel = f2 / f2_length * max_vel;
+      traj.segments[i].vel = f2 / f2_length * max_vel;
 
       if (integration == RectangularIntegration) {
-        traj.segments_[i].pos = traj.segments_[i].vel * dt + last.pos;
+        traj.segments[i].pos = traj.segments[i].vel * dt + last.pos;
       } else if (integration == TrapezoidalIntegration) {
-        traj.segments_[i].pos = (last.vel
-                + traj.segments_[i].vel) / 2.0 * dt + last.pos;
+        traj.segments[i].pos = (last.vel
+                + traj.segments[i].vel) / 2.0 * dt + last.pos;
       }
-      traj.segments_[i].x = traj.segments_[i].pos;
-      traj.segments_[i].y = 0;
+      traj.segments[i].x = traj.segments[i].pos;
+      traj.segments[i].y = 0;
 
       // Acceleration and jerk are the differences in velocity and
       // acceleration, respectively.
-      traj.segments_[i].acc = (traj.segments_[i].vel - last.vel) / dt;
-      traj.segments_[i].jerk = (traj.segments_[i].acc - last.acc) / dt;
-      traj.segments_[i].dt = dt;
+      traj.segments[i].acc = (traj.segments[i].vel - last.vel) / dt;
+      traj.segments[i].jerk = (traj.segments[i].acc - last.acc) / dt;
+      traj.segments[i].dt = dt;
 
-      last = traj.segments_[i];
+      last = traj.segments[i];
     }
 
     return traj;

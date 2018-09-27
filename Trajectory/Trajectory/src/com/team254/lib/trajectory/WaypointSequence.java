@@ -11,36 +11,18 @@ import com.team254.lib.util.ChezyMath;
  */
 public class WaypointSequence {
 
-  public static class Waypoint {
-    public double x;
-    public double y;
-    public double theta;
-
-    public Waypoint(double x, double y, double theta) {
-      this.x = x;
-      this.y = y;
-      this.theta = theta;
-    }
-    
-    public Waypoint(Waypoint tocopy) {
-      this.x = tocopy.x;
-      this.y = tocopy.y;
-      this.theta = tocopy.theta;
-    }
-  }
-
-  Waypoint[] waypoints_;
+  Waypoint[] waypoints;
   int num_waypoints_;
 
   public WaypointSequence(int max_size) {
 	  //build array of specified size
-    waypoints_ = new Waypoint[max_size];
+    waypoints = new Waypoint[max_size];
   }
 
   public void addWaypoint(Waypoint w) {
 	  //If there is space in the array, add the waypoint
-    if (num_waypoints_ < waypoints_.length) {
-      waypoints_[num_waypoints_] = w;
+    if (num_waypoints_ < waypoints.length) {
+      waypoints[num_waypoints_] = w;
       ++num_waypoints_;
     }
   }
@@ -51,20 +33,20 @@ public class WaypointSequence {
 
   public Waypoint getWaypoint(int index) {
     if (index >= 0 && index < getNumWaypoints()) {
-      return waypoints_[index];
+      return waypoints[index];
     } else {
       return null;
     }
   }
   
   public WaypointSequence invertY() {
-    WaypointSequence inverted = new WaypointSequence(waypoints_.length);
+    WaypointSequence inverted = new WaypointSequence(waypoints.length);
     inverted.num_waypoints_ = num_waypoints_;
     for (int i = 0; i < num_waypoints_; ++i) {
-      inverted.waypoints_[i] = waypoints_[i];
-      inverted.waypoints_[i].y *= -1;
-      inverted.waypoints_[i].theta = ChezyMath.boundAngle0to2PiRadians(
-              2*Math.PI - inverted.waypoints_[i].theta);
+      inverted.waypoints[i] = waypoints[i];
+      inverted.waypoints[i].y *= -1;
+      inverted.waypoints[i].theta = ChezyMath.boundAngle0to2PiRadians(
+              2*Math.PI - inverted.waypoints[i].theta);
     }
     
     return inverted;
