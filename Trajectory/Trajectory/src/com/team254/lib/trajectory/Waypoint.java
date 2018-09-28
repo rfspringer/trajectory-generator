@@ -1,5 +1,7 @@
 package com.team254.lib.trajectory;
-
+/*
+Underlying storage mechanism for a single waypoint
+ */
 public class Waypoint {
     public double x;
     public double y;

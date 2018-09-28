@@ -18,20 +18,20 @@ public class PathGenerator {
    * @return The path.
    */
   public static Path makePath(WaypointSequence waypoints, 
-          Config config,
+          RobotConfig config,
           String name) {
     return new Path(name, 
             generateLeftAndRightFromSeq(waypoints, config));
   }
 
   static Trajectory.Pair generateLeftAndRightFromSeq(WaypointSequence path,
-          Config config) {
+          RobotConfig config) {
     return makeLeftAndRightTrajectories(generateFromPath(path, config),
             config.getWheelbaseWidth());
   }
 
   static Trajectory generateFromPath(WaypointSequence path,
-          Config config) {
+          RobotConfig config) {
     if (path.getNumWaypoints() < 2) {
       return null;
     }
@@ -53,7 +53,7 @@ public class PathGenerator {
 
     // Generate a smooth trajectory over the total distance.
     Trajectory traj = TrajectoryGenerator.generate(config,
-            TrajectoryGenerator.SCurvesStrategy, 0.0, path.getWaypoint(0).theta,
+            TrajectoryConfig.Strategy.S_CURVE, 0.0, path.getWaypoint(0).theta,
             total_distance, 0.0, path.getWaypoint(0).theta);	//last parameter should be path.getWaypoint(num_waypoint - 1).theta ???
 
     // Assign headings based on the splines.

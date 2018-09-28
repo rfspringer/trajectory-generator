@@ -6,82 +6,14 @@ package com.team254.lib.trajectory;
  * @author Jared341
  */
 public class TrajectoryGenerator {
-
-//  ///// INNER CLASSES /////
-//  public static class Config {
-//
-//    public double timeInterval;
-//    public double max_vel;
-//    public double max_acc;
-//    public double max_jerk;
-//
-//  }
-
-
-  public static class Strategy {
-
-    // J2ME Enum pattern
-    private final String value_;
-
-    private Strategy(String value) {
-      value_ = value;
-    }
-
-    public String toString() {
-      return value_;
-    }
-  }
-
-  private static class IntegrationMethod {
-
-    // J2ME Enum pattern
-    private final String value_;
-
-    private IntegrationMethod(String value) {
-      value_ = value;
-    }
-
-    public String toString() {
-      return value_;
-    }
-  }
-
-  ///// CONSTANTS /////
-  // Move from the start to the goal at a constant velocity.  Acceleration and
-  // jerk limits are ignored, and start and goal vel are ignored (since the
-  // velocity at all times will be max_vel).
-  public static final Strategy StepStrategy = new Strategy("StepStrategy");
-
-  // Move from the start to the goal with a trapezoidal speed profile.
-  // Jerk limits are ignored.
-  public static final Strategy TrapezoidalStrategy
-          = new Strategy("TrapezoidalStrategy");
-
-  // Move from the start tot he goal with a S-curve speed profile.  All limits
-  // are obeyed, but only point-to-point moves (start_vel = goal_vel = 0) are
-  // currently supported.
-  public static final Strategy SCurvesStrategy
-          = new Strategy("SCurvesStrategy");
-
-  // Choose one of the above strategies based on the inputs.
-  public static final Strategy AutomaticStrategy
-          = new Strategy("AutomaticStrategy");
-
-  private static final IntegrationMethod RectangularIntegration
-          = new IntegrationMethod("RectangularIntegration");
-
-  private static final IntegrationMethod TrapezoidalIntegration
-          = new IntegrationMethod("TrapezoidalIntegration");
-
-  ///// METHODS /////
   /**
    * Generate a trajectory from a start state to a goal state.
    *
    * Read the notes on each of the Strategies defined above, as certain
    * arguments are ignored for some strategies.
    *
-   * @param config Definition of constraints and sampling rate (WARNING: Some
-   * may be ignored)
+   * @param config Definition of constraints and sampling rate (NOTE: Some
+   * may be ignored based on Strategy)
    * @param strategy Which generator to use
    * @param start_vel The starting velocity (WARNING: May be ignored)
    * @param start_heading The starting heading
@@ -92,20 +24,20 @@ public class TrajectoryGenerator {
    * conditions.
    */
   public static Trajectory generate(
-          Config config,
-          Strategy strategy,
+          RobotConfig config,
+          TrajectoryConfig.Strategy strategy,
           double start_vel,
           double start_heading,
           double goal_pos,
           double goal_vel,
           double goal_heading) {
     // Choose an automatic strategy.
-    if (strategy == AutomaticStrategy) {
-      strategy = chooseStrategy(start_vel, goal_vel, config.getMaxVelocity());
+    if (strategy == TrajectoryConfig.Strategy.AUTOMATIC) {
+      strategy = TrajectoryConfig.chooseStrategy(start_vel, goal_vel, config.getMaxVelocity());
     }
 
     Trajectory traj;
-    if (strategy == StepStrategy) {
+    if (strategy == TrajectoryConfig.Strategy.STEP) {
       double impulse = (goal_pos / config.getMaxVelocity()) / config.getTimeInterval();
 
       // Round down, meaning we may undershoot by less than max_vel*dt.
@@ -113,9 +45,9 @@ public class TrajectoryGenerator {
       // velocity.
       int time = (int) (Math.floor(impulse));
       traj = secondOrderFilter(1, 1, config.getTimeInterval(), config.getMaxVelocity(),
-              config.getMaxVelocity(), impulse, time, TrapezoidalIntegration);
+              config.getMaxVelocity(), impulse, time, TrajectoryConfig.IntegrationMethod.TRAPEZOIDAL);
 
-    } else if (strategy == TrapezoidalStrategy) {
+    } else if (strategy == TrajectoryConfig.Strategy.TRAPEZOIDAL) {
       // How fast can we go given maximum acceleration and deceleration?
       double start_discount = .5 * start_vel * start_vel / config.getMaxAcceleration();
       double end_discount = .5 * goal_vel * goal_vel / config.getMaxAcceleration();
@@ -142,9 +74,9 @@ public class TrajectoryGenerator {
               - start_vel / config.getMaxAcceleration() / config.getTimeInterval()
               + start_discount + end_discount;
       traj = secondOrderFilter(f1_length, 1, config.getTimeInterval(), start_vel,
-              adjusted_max_vel, impulse, time, TrapezoidalIntegration);
+              adjusted_max_vel, impulse, time, TrajectoryConfig.IntegrationMethod.TRAPEZOIDAL);
 
-    } else if (strategy == SCurvesStrategy) {
+    } else if (strategy == TrajectoryConfig.Strategy.S_CURVE) {
       // How fast can we go given maximum acceleration and deceleration?
     	double theoretical_max = (-config.getMaxAcceleration() * config.getMaxAcceleration() + Math.sqrt(config.getMaxAcceleration()
                 * config.getMaxAcceleration() * config.getMaxAcceleration() * config.getMaxAcceleration()
@@ -160,7 +92,7 @@ public class TrajectoryGenerator {
       double impulse = (goal_pos / adjusted_max_vel) / config.getTimeInterval();
       int time = (int) (Math.ceil(f1_length + f2_length + impulse));
       traj = secondOrderFilter(f1_length, f2_length, config.getTimeInterval(), 0,
-              adjusted_max_vel, impulse, time, TrapezoidalIntegration);
+              adjusted_max_vel, impulse, time, TrajectoryConfig.IntegrationMethod.TRAPEZOIDAL);
 
     } else {
       return null;
@@ -186,7 +118,7 @@ public class TrajectoryGenerator {
           double max_vel,
           double total_impulse,
           int length,
-          IntegrationMethod integration) {
+          TrajectoryConfig.IntegrationMethod integration) {
     if (length <= 0) {
       return null;
     }
@@ -239,9 +171,9 @@ public class TrajectoryGenerator {
       // Velocity is the normalized sum of f2 * the max velocity
       traj.segments[i].vel = f2 / f2_length * max_vel;
 
-      if (integration == RectangularIntegration) {
+      if (integration == TrajectoryConfig.IntegrationMethod.RECTANGULAR) {
         traj.segments[i].pos = traj.segments[i].vel * dt + last.pos;
-      } else if (integration == TrapezoidalIntegration) {
+      } else if (integration == TrajectoryConfig.IntegrationMethod.TRAPEZOIDAL) {
         traj.segments[i].pos = (last.vel
                 + traj.segments[i].vel) / 2.0 * dt + last.pos;
       }
@@ -258,18 +190,5 @@ public class TrajectoryGenerator {
     }
 
     return traj;
-  }
-
-  public static Strategy chooseStrategy(double start_vel, double goal_vel,
-          double max_vel) {
-    Strategy strategy;
-    if (start_vel == goal_vel && start_vel == max_vel) {
-      strategy = StepStrategy;
-    } else if (start_vel == goal_vel && start_vel == 0) {
-      strategy = SCurvesStrategy;
-    } else {
-      strategy = TrapezoidalStrategy;
-    }
-    return strategy;
   }
 }

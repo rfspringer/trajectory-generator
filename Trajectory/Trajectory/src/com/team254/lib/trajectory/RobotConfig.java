@@ -1,14 +1,14 @@
 package com.team254.lib.trajectory;
 
-public class Config {
+public class RobotConfig {
     private double timeInterval;
     private double maxVelocity;
     private double maxAcceleration;
     private double maxJerk;
     private double wheelbaseWidth;
 
-    public Config(double timeInterval, double maxVelocity, double maxAcceleration, double maxJerk,
-                  double wheelbaseWidth) {
+    public RobotConfig(double timeInterval, double maxVelocity, double maxAcceleration, double maxJerk,
+                       double wheelbaseWidth) {
         this.timeInterval = timeInterval;
         this.maxVelocity = maxVelocity;
         this.maxAcceleration = maxAcceleration;

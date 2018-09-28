@@ -1,13 +1,5 @@
 package com.team254.lib.trajectory;
 
-import com.team254.lib.trajectory.io.JavaSerializer;
-import com.team254.lib.trajectory.io.JavaStringSerializer;
-import com.team254.lib.trajectory.io.TextFileSerializer;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 /**
  *
  * @author Rachel
@@ -18,12 +10,10 @@ public class Main {
     TrajectoryWriter trajectoryWriter = new TrajectoryWriter();
     trajectoryWriter.setDirectory(args);
 
-    Config defaultConfig = new Config(0.01, 4.0, 3.25, 30.0,
+    RobotConfig defaultConfig = new RobotConfig(0.01, 4.0, 3.25, 30.0,
             1.0);
 
-
       {
-
           // Path name must be a valid Java class name.
           final String path_name = "TestTrajectory";
 
