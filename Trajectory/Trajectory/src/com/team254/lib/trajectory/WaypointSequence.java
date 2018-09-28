@@ -10,64 +10,47 @@ import com.team254.lib.util.ChezyMath;
  * @author Jared341
  */
 public class WaypointSequence {
-
-  public static class Waypoint {
-
-    public Waypoint(double x, double y, double theta) {
-      this.x = x;
-      this.y = y;
-      this.theta = theta;
-    }
-    
-    public Waypoint(Waypoint tocopy) {
-      this.x = tocopy.x;
-      this.y = tocopy.y;
-      this.theta = tocopy.theta;
-    }
-
-    public double x;
-    public double y;
-    public double theta;
-  }
-
-  Waypoint[] waypoints_;
-  int num_waypoints_;
+  private Waypoint[] waypoints;
+  private int numWaypoints;
 
   public WaypointSequence(int max_size) {
-	  //build array of specified size
-    waypoints_ = new Waypoint[max_size];
+    waypoints = new Waypoint[max_size];
   }
 
   public void addWaypoint(Waypoint w) {
-	  //If there is space in the array, add the waypoint
-    if (num_waypoints_ < waypoints_.length) {
-      waypoints_[num_waypoints_] = w;
-      ++num_waypoints_;
+    if (numWaypoints < waypoints.length) {
+      waypoints[numWaypoints] = w;
+      ++numWaypoints;
+    } else {
+      throw new RuntimeException("Cannot add waypoint to file, not enough space in waypoint array");
     }
   }
 
   public int getNumWaypoints() {
-    return num_waypoints_;
+    return numWaypoints;
   }
 
   public Waypoint getWaypoint(int index) {
     if (index >= 0 && index < getNumWaypoints()) {
-      return waypoints_[index];
+      return waypoints[index];
     } else {
       return null;
     }
   }
   
-  public WaypointSequence invertY() {
-    WaypointSequence inverted = new WaypointSequence(waypoints_.length);
-    inverted.num_waypoints_ = num_waypoints_;
-    for (int i = 0; i < num_waypoints_; ++i) {
-      inverted.waypoints_[i] = waypoints_[i];
-      inverted.waypoints_[i].y *= -1;
-      inverted.waypoints_[i].theta = ChezyMath.boundAngle0to2PiRadians(
-              2*Math.PI - inverted.waypoints_[i].theta);
+  public WaypointSequence invertPath() {
+    WaypointSequence invertedWaypointSequence = new WaypointSequence(waypoints.length);
+    invertedWaypointSequence.numWaypoints = numWaypoints;
+    for (int i = 0; i < numWaypoints; ++i) {
+      invertedWaypointSequence.waypoints[i] = invertWaypoint(waypoints[i]);
     }
-    
-    return inverted;
+    return invertedWaypointSequence;
+  }
+
+  private Waypoint invertWaypoint(Waypoint correspondingWaypoint){
+      Waypoint currentWaypoint = correspondingWaypoint;
+      currentWaypoint.y *= -1;
+      currentWaypoint.theta = ChezyMath.boundAngle0to2PiRadians(2 * Math.PI - currentWaypoint.theta);
+      return currentWaypoint;
   }
 }

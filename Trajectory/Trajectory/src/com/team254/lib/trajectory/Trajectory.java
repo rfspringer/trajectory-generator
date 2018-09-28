@@ -1,7 +1,5 @@
 package com.team254.lib.trajectory;
 
-import com.team254.lib.util.ChezyMath;
-
 /**
  * Implementation of a Trajectory using arrays as the underlying storage
  * mechanism.
@@ -11,13 +9,13 @@ import com.team254.lib.util.ChezyMath;
 public class Trajectory {
   
   public static class Pair {
+    public Trajectory left;
+    public Trajectory right;
+
     public Pair(Trajectory left, Trajectory right) {
       this.left = left;
       this.right = right;
     }
-
-    public Trajectory left;
-    public Trajectory right;
   }
 
   public static class Segment {
@@ -56,19 +54,19 @@ public class Trajectory {
     }
   }
 
-  Segment[] segments_ = null;
+  Segment[] segments = null;
   boolean inverted_y_ = false;
 
   public Trajectory(int length) {
-	  // Create trajecotry as an array of Segment objects of specified length
-    segments_ = new Segment[length];
+	  // Create trajectory as an array of Segment objects of specified length
+    segments = new Segment[length];
     for (int i = 0; i < length; ++i) {
-      segments_[i] = new Segment();
+      segments[i] = new Segment();
     }
   }
   
   public Trajectory(Segment[] segments) {
-    segments_ = segments;
+    this.segments = segments;
   }
   
   public void setInvertedY(boolean inverted) {
@@ -76,15 +74,15 @@ public class Trajectory {
   }
 
   public int getNumSegments() {
-    return segments_.length;
+    return segments.length;
   }
 
   public Segment getSegment(int index) {
     if (index < getNumSegments()) {
       if (!inverted_y_) {
-        return segments_[index];
+        return segments[index];
       } else {
-        Segment segment = new Segment(segments_[index]);
+        Segment segment = new Segment(segments[index]);
         segment.y *= -1.0;
         segment.heading *= -1.0;
         return segment;
@@ -96,16 +94,16 @@ public class Trajectory {
   
   public void setSegment(int index, Segment segment) {
     if (index < getNumSegments()) {
-      segments_[index] = segment;
+      segments[index] = segment;
     }
   }
 
   public void scale(double scaling_factor) {
     for (int i = 0; i < getNumSegments(); ++i) {
-      segments_[i].pos *= scaling_factor;
-      segments_[i].vel *= scaling_factor;
-      segments_[i].acc *= scaling_factor;
-      segments_[i].jerk *= scaling_factor;
+      segments[i].pos *= scaling_factor;
+      segments[i].vel *= scaling_factor;
+      segments[i].acc *= scaling_factor;
+      segments[i].jerk *= scaling_factor;
     }
   }
 
@@ -114,19 +112,19 @@ public class Trajectory {
             + to_append.getNumSegments()];
 
     for (int i = 0; i < getNumSegments(); ++i) {
-      temp[i] = new Segment(segments_[i]);
+      temp[i] = new Segment(segments[i]);
     }
     for (int i = 0; i < to_append.getNumSegments(); ++i) {
       temp[i + getNumSegments()] = new Segment(to_append.getSegment(i));
     }
 
-    this.segments_ = temp;
+    this.segments = temp;
   }
 
   public Trajectory copy() {
     Trajectory cloned
             = new Trajectory(getNumSegments());
-    cloned.segments_ = copySegments(this.segments_);
+    cloned.segments = copySegments(this.segments);
     return cloned;
   }
   

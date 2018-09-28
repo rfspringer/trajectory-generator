@@ -30,7 +30,7 @@ public class JavaSerializer implements IPathSerializer {
             path.getRightWheelTrajectory());
     
     contents += "  public " + path.getName() + "() {\n";
-    contents += "    this.name_ = \"" + path.getName() + "\";\n";
+    contents += "    this.pathName = \"" + path.getName() + "\";\n";
     contents += "    this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);\n";
     contents += "  }\n\n";
 
