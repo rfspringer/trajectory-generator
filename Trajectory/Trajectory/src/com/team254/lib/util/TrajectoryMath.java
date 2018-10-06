@@ -15,7 +15,6 @@ public class TrajectoryMath {
         return Math.abs(x - y) < 1E-6;
     }
 
-
     public static double angleAt(Spline spline, double percentage) {
         double angle = ChezyMath.boundAngle0to2PiRadians(
                 Math.atan(derivativeAt(spline, percentage)) + spline.getThetaOffset());
@@ -42,35 +41,10 @@ public class TrajectoryMath {
 
     private static double secondDerivativeAt(Spline spline, double percentage) {
         percentage = Math.max(Math.min(percentage, 1), 0);
-
         double x_hat = percentage * spline.getLinearDistance();
         double ypp_hat = (20 * spline.a() * x_hat + 12 * spline.b()) * x_hat * x_hat + 6 * spline.c() * x_hat + 2 * spline.d();
-
-
         return ypp_hat;
     }
-//
-//    public double calculateArcLength(Spline spline) {
-//        if (spline.getArcLength() >= 0) {
-//            return spline.getArcLength();
-//        }
-//
-//        final int kNumSamples = 100000;
-//        double arc_length = 0;	//initialize arc length
-//        double t, dydt;
-//        double integrand;
-//        double last_integrand = Math.sqrt(1 + derivativeAt(0) * derivativeAt(0)) / kNumSamples;		//Initialize to estimated length of first segment
-//        for (int i = 1; i <= kNumSamples; ++i) {
-//            t = ((double) i) / kNumSamples;	//fraction of the arc covered
-//            dydt = derivativeAt(t);
-//            integrand = Math.sqrt(1 + dydt * dydt) / kNumSamples;		//find estimated length of segment based on derivative
-//            arc_length += (integrand + last_integrand) / 2;	//add average of integrand and last integrand to arc length
-//            last_integrand = integrand;
-//        }
-//        arc_length_ = linear_distance_ * arc_length;	//scale arc to actual distance (originally based on a linear distance of 1)
-//        System.out.println("arc length: " + arc_length_);
-//        return arc_length_;
-//    }
 
     public static double calculateArcLength(Spline spline) {
         if (spline.getArcLength() >= 0) {
@@ -86,15 +60,12 @@ public class TrajectoryMath {
         for (int i = 1; i <= kNumSamples; ++i) {
             t = ((double) i) / kNumSamples;	//fraction of the arc covered
             dydt = derivativeAt(spline, t);
-//            System.out.println(dydt);
             integrand = Math.sqrt(1 + dydt * dydt) / kNumSamples;		//find estimated length of segment based on derivative
             arcLength += (integrand + last_integrand) / 2;	//add average of integrand and last integrand to arc length
             last_integrand = integrand;
         }
-        System.out.println("out");
         return spline.getLinearDistance() * arcLength;	//scale arc to actual distance (originally based on a linear distance of 1)
     }
-
 
     public static double getPercentageForDistance(Spline spline, double distance) {
         // EDIT: Needs a ton of refactoring
