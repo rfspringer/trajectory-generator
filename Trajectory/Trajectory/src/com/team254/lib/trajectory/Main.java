@@ -33,7 +33,6 @@ public class Main {
       final String path_name = "TestTrajectory2";
 
       // Description of this auto mode path.
-      // Remember that this is for the GO LEFT CASE!
       WaypointSequence p = new WaypointSequence(10);    //Create WaypointSequence to hold up to 10 waypoints
       //Create Waypoint sequences, add these waypoints to the waypoint sequences 3 times
       p.addWaypoint(new Waypoint(0, 0, 0));

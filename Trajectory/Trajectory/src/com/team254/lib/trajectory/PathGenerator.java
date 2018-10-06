@@ -1,5 +1,7 @@
 package com.team254.lib.trajectory;
 
+import com.team254.lib.util.TrajectoryMath;
+
 /**
  * Generate a smooth Trajectory from a Path.
  *
@@ -42,12 +44,12 @@ public class PathGenerator {
     double[] spline_lengths = new double[splines.length];	//Create an array of spline lengths
     double total_distance = 0;		//Initialize distance
     for (int i = 0; i < splines.length; ++i) {
-      splines[i] = new Spline();	//Create new spline
-      if (!Spline.reticulateSplines(path.getWaypoint(i),
-              path.getWaypoint(i + 1), splines[i], Spline.QuinticHermite)) {
+      splines[i] = SplineGenerator.reticulateSplines(path.getWaypoint(i),
+              path.getWaypoint(i + 1), Spline.SplineType.QUINTIC_HERMITE);	//Create new spline
+      if (splines[i] == null) {
         return null;
       }
-      spline_lengths[i] = splines[i].calculateLength();		//calculate length of spline
+      spline_lengths[i] = splines[i].getArcLength();		//calculate length of spline
       total_distance += spline_lengths[i];		//Add length to total distance
     }
 
@@ -67,10 +69,9 @@ public class PathGenerator {
       while (!found_spline) {
         double cur_pos_relative = cur_pos - cur_spline_start_pos;
         if (cur_pos_relative <= spline_lengths[cur_spline]) {
-          double percentage = splines[cur_spline].getPercentageForDistance(
-                  cur_pos_relative);
-          traj.getSegment(i).heading = splines[cur_spline].angleAt(percentage);
-          double[] coords = splines[cur_spline].getXandY(percentage);
+          double percentage = TrajectoryMath.getPercentageForDistance(splines[cur_spline], cur_pos_relative);
+          traj.getSegment(i).heading = TrajectoryMath.angleAt(splines[cur_spline], percentage);
+          double[] coords = TrajectoryMath.getXandYOnSpline(splines[cur_spline], percentage);
           traj.getSegment(i).x = coords[0];
           traj.getSegment(i).y = coords[1];
           found_spline = true;
@@ -79,8 +80,8 @@ public class PathGenerator {
           cur_spline_start_pos = length_of_splines_finished;
           ++cur_spline;
         } else {
-          traj.getSegment(i).heading = splines[splines.length - 1].angleAt(1.0);
-          double[] coords = splines[splines.length - 1].getXandY(1.0);
+          traj.getSegment(i).heading = TrajectoryMath.angleAt(splines[splines.length - 1], 1.0);
+          double[] coords = TrajectoryMath.getXandYOnSpline(splines[splines.length - 1], 1.0);
           traj.getSegment(i).x = coords[0];
           traj.getSegment(i).y = coords[1];
           found_spline = true;
