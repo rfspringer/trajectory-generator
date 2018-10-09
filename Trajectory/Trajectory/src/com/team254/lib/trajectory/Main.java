@@ -26,6 +26,7 @@ public class Main {
           Path currentPath = PathGenerator.makePath(waypointSequence, defaultConfig, path_name);
 
           trajectoryWriter.writeFile(path_name, currentPath);
+
       }
     {
 
